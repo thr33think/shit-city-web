@@ -1,0 +1,17 @@
+.position-button { 
+  position: absolute; 
+  bottom: 15px;
+  right: 2px;
+  z-index: 99;
+}
+
+.add-button { 
+  position: absolute; 
+  bottom: 75px;
+  right: 2px;
+  z-index: 99;
+}
+
+.no-margin-left {
+  margin-left: -12px !important;
+}

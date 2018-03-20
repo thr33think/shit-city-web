@@ -1,0 +1,28 @@
+<div class="position-button">
+  <a (click)="centerPosition()" class="btn-floating btn-large waves-effect waves-light red">
+    <i class="material-icons">gps_fixed</i>
+  </a>
+</div>
+<div class="add-button">
+  <a (click)="addTurd()" class="btn-floating btn-large waves-effect waves-light red">
+    <i class="material-icons">add</i>
+  </a>
+</div>
+
+<div class="row" *ngIf="visible" [@slideInOut]>
+  <div class="col s12 m6 no-margin-left">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">Adding Dogpiles</span>
+        <p>
+          Did you find any dogpiles you want to share? Download our APP to easily share it with others! Click on the Buttons below!
+        </p>
+      </div>
+      <div class="card-action">
+        <a href="#">Android</a>
+        <a href="#">iOS</a>
+        <a href="#">Windows Phone</a>
+      </div>
+    </div>
+  </div>
+</div>
