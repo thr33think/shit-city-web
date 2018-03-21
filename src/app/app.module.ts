@@ -5,8 +5,6 @@ import { NgModule } from '@angular/core';
 import { MaterializeModule } from 'materialize-css';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import { MenuComponent } from './components/menu/menu.component';
@@ -22,7 +20,6 @@ import { GoogleMapsAPIWrapper } from '@agm/core';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
