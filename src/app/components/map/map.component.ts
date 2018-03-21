@@ -27,8 +27,8 @@ export class MapComponent implements OnInit {
   zoom = 8;
 
   // initial center position for the map
-  lat = 51.673858;
-  lng = 7.815982;
+  lat = 48.7618486;
+  lng = 9.17261890;
 
   markers: Marker[];
 
@@ -54,7 +54,7 @@ export class MapComponent implements OnInit {
       .subscribe((res) => {
         this.lat = res.coords.latitude;
         this.lng = res.coords.longitude;
-        console.log(res);
+        this.zoom = 12;
       });
   }
 
@@ -71,15 +71,11 @@ export class MapComponent implements OnInit {
   }
 
   // mapClicked($event: MouseEvent) {
-  //   this.markers.push({
-  //     lat: $event.coords.lat,
-  //     lng: $event.coords.lng,
-  //     draggable: false
-  //   });
+  //   send put request to api
   // }
 
-  markerDragEnd(m: Marker, $event: MouseEvent) {
-    console.log('dragEnd', m, $event);
-  }
+  // markerDragEnd(m: Marker, $event: MouseEvent) {
+  //   console.log('dragEnd', m, $event);
+  // }
 
 }
