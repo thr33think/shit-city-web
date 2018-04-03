@@ -1,7 +1,8 @@
 export interface Marker {
     lat: number;
-    lng: number;
+    long: number;
     id: string;
-    imagePath: string;
+    image_base64: string;
     timestamp: string;
+    visible: boolean;
 }

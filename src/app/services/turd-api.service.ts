@@ -1,5 +1,7 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Marker } from '../interfaces/marker';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class TurdApiService {
@@ -7,31 +9,37 @@ export class TurdApiService {
   markers: Marker[] = [
     {
       lat: 51.673858,
-      lng: 7.815982,
+      long: 7.815982,
       id: 'A',
-      imagePath: '/assets/images/poo.png',
-      timestamp: '0'
+      image_base64: '/assets/images/poo.png',
+      timestamp: '0',
+      visible: true
     },
     {
       lat: 51.373858,
-      lng: 7.215982,
+      long: 7.215982,
       id: 'B',
-      imagePath: '/assets/images/poo.png',
-      timestamp: '0'
+      image_base64: '/assets/images/poo.png',
+      timestamp: '0',
+      visible: true
     },
     {
       lat: 51.723858,
-      lng: 7.895982,
+      long: 7.895982,
       id: 'C',
-      imagePath: '/assets/images/poo.png',
-      timestamp: '0'
+      image_base64: '/assets/images/poo.png',
+      timestamp: '0',
+      visible: true
     }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getTurds(): Marker[] {
-    return this.markers;
+  async getTurds(): Promise<any> {
+    const markers = await this.http.get(`${environment.apiUrl}/turds`, {
+      headers: new HttpHeaders().set('Authorization', 'Basic YXBwOmpCSDNKSnZnN0d1VTFIQ00zZkxuSnQxQXE=')
+    }).toPromise();
+    return markers;
   }
 
 }

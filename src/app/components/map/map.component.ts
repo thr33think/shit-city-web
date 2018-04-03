@@ -17,9 +17,10 @@ export class MapComponent implements OnInit {
 
   activeTurd: Marker = {
     lat: 0,
-    lng: 0,
+    long: 0,
     id: '0',
-    imagePath: '/assets/images/poo.png',
+    image_base64: '',
+    visible: false,
     timestamp: '0',
   };
 
