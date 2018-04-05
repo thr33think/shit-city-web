@@ -42,4 +42,12 @@ export class TurdApiService {
     return markers;
   }
 
+  async uploadTurd(bodyData): Promise<any> {
+    const upload = await this.http.post(`${environment.apiUrl}/turds`, bodyData, {
+      headers: new HttpHeaders().set('Authorization', 'Basic YXBwOmpCSDNKSnZnN0d1VTFIQ00zZkxuSnQxQXE=')
+    }).toPromise();
+    console.log(upload);
+    return upload;
+  }
+
 }
