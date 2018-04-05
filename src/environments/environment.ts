@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.turds.dog/'
+  apiUrl: 'https://api.turds.dog'
 };
