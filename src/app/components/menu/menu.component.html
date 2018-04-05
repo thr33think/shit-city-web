@@ -4,12 +4,17 @@
   </a>
 </div>
 <div class="add-button">
-  <a (click)="addTurd()" class="btn-floating btn-large waves-effect waves-light red">
+  <a (click)="toggleTurdModal()" class="btn-floating btn-large waves-effect waves-light red">
+    <i class="material-icons">add</i>
+  </a>
+</div>
+<div class="info-button">
+  <a (click)="toggleInfo()" class="btn-floating btn-large waves-effect waves-light red">
     <i class="material-icons">info</i>
   </a>
 </div>
 <div class="modal-backgroud" *ngIf="visible" [@opacityFade]></div>
-<div id="modal1" class="modal" *ngIf="visible" [@slideInOut]>
+<div id="infoModal" class="modal" *ngIf="visible && infoModal" [@slideInOut]>
   <div class="modal-content">
     <h4>Turds.dog - A Threethink arts project</h4>
     <p>We live in Stuttgart where it's very common that dog owners don't care about their dog doing its business on the pavement. Because of that we started turds.dog - the first app that helps you detect dog turds on your daily walks.</p>
@@ -21,5 +26,23 @@
     <a href="#" class="modal-action modal-close waves-effect waves-green btn">Android</a>
     <a href="#" class="modal-action modal-close waves-effect waves-green btn">iOS</a>
     <a href="#" class="modal-action modal-close waves-effect waves-green btn">Windows Phone</a>
+  </div>
+</div>
+
+<div id="addTurdModal" class="modal" *ngIf="visible && turdModal" [@slideInOut]>
+  <div class="modal-content" *ngIf="webcamState">
+    <h4>Add Turd</h4>
+    <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+    <button class="modal-action modal-close waves-effect waves-green btn" (click)="triggerSnapshot();">Take A Snapshot</button>
+  </div>
+  <div class="modal-content">
+    <div class="snapshot" *ngIf="webcamImage">
+      <h4>Nice one!</h4>
+      <img [src]="webcamImage.imageAsDataUrl" />
+      <button class="modal-action modal-close waves-effect waves-green btn" (click)="uploadTurd();">Upload the Turd!</button>
+      <div *ngIf="response">
+        {{response.result}}
+      </div>
+    </div>
   </div>
 </div>
