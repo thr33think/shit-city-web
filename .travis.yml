@@ -1,8 +1,5 @@
 sudo: required
 dist: trusty
-language: node_js
-node_js:
-- node
 env:
   global:
   # DOCKER_USER
