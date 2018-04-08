@@ -1,0 +1,35 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+- node
+env:
+  global:
+  # DOCKER_USER
+  - secure: "VGpnJmdN4tt4mu4o6TbM239hPid1DktCrDj+Gt5yNWxY4zHNdxQj9BOTe4Hi0rP2KymMGHjxxHvZnqx+G8MwfFfO57nMUXz63sjgCLHR778UiCivLxeyNz153LlGJsXCLwXIJ3ch7wKMiNcM56KswujQnIVr92cGm0Pkw/jMrPgrX8L7i7xIsuM9Oos0tIyV0OCGhSdoayoG7mHPU1kFz0M2eVvDeai1PYPEOAcDg2pQlkpcEGPwdtl+hOCGnOxwyqCXc6kYvv2ZpEt7TGI726GgkPp9E+1w9riQ0ktED6in6eO/a0ywhlOx5siRhn45SC+GZP5PwZhZbvOZLz0/Kah8NPCcz6XmcZpko5StMbPcHG6GndJuz3TW8ckpOny3bzkklVlbOmst1gWT14Wldnd+J4iXW80SnHcvf5cy+eLES4cn73roGuUpfzGQzSSPScLfozr+7AK5x3M2vrtKJZ9EJTo8SbsKmVrlyrsHvI3WH7DNNR0ew54uEgiYFY20z8FB3n9FHv1meNxIylrHyVSc8CzEPwYAYl0lnBXEFJnUZ8R9/IcHS9Xp+x0C7ub6m2iTnDDvfF4O8XfwgG/aVPFGnz0dmjGoAXyXsSoF26ci+rt6QhgxrQB2OLJxVvpyswQEHtOlUrAEdNSUezLpDnrHS3En8N08/Ak6mJ3lG8k="
+  # DOCKER_PASS
+  - secure: "OBDWtm4AekCXVLPMSwN6xYv7J0MO5rtWbU5KfCxv0aZazE2XNgg6SuEt7L3pZxI0VOPRsbgOnxg7ZD+Xce6QsdkuTqUC8GwWIvQFqLPC2Uqzv1Zym1mu/ZBjAr3yLWcifWTCnCBjI7lSbg+aoHYloYGWZbh60CXlEtTEy0E+foe6afAovWzAwQ8eSEJbOMLNS2kqQ0R96qWvVdmXOVJ7i6qFXtHFmrCma129FUG9LcWkiPYaKYfXBrOpwiq+JMP8Sz+4k1XJI1AQN8nbPQqJFgrVCsJcf1Bo6c1Bt2/GWiiDl7UyPszPEyNc7IRxjHTMuzMDG9aYvWw5+Ay3Ait0ljGFMAwAcJTcnBsIRZ9zAo16xik8dGPbDBBJwgfl3tIiJ8jy/Wq3bdZr9I0+14IlbGXa/k3foIu+EoesJAo5ia/hK7lNOaS9YrgEq0bbzV4DjsFAzAs1KC+DvfkgNWNY9a7X22BuEmboNyNuqmNZssps3CpHvCyXS3y1KBELAxSeEqT/mJsRp5Rl/9I6augc6H+Ca99ZmgHSeju+kcFMIDa1KZQXKAn1ejn5NqaOAbs6RmLVJIuNL6o7gqmobzsd+2whKfV+WzRos1a2pfIYo6bnAvSe6QOlqRxzUtpQpKLQCona6XOQnUpBV5/eTl2rCe3r0VuC/jraaCrMYbU+Qj4="
+services:
+- docker
+before_install:
+- openssl aes-256-cbc -K $encrypted_c06c602c11d3_key -iv $encrypted_c06c602c11d3_iv -in docker-creds.tar.enc -out docker-creds.tar -d
+- tar xvf docker-creds.tar
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+stages:
+- name: build
+- name: deploy
+jobs:
+  include:
+  - stage: build
+    script:
+    - docker build --pull --rm -t threethink/shit-city-web:${TRAVIS_COMMIT} .
+    - docker push threethink/shit-city-web:${TRAVIS_COMMIT}
+    if: branch = master
+  - stage: deploy
+    env:
+      # DOCKER_HOST
+    - secure: "N9VyFIW36LyYRKU15Kepf9YDfxUwaYG59SK1WU13PfTrLLSkWqoy+BQG6ydFFblU6+PZKPJzBFnS8QwOVDePcQ8Pdsw+j2KlSi1yqJ1FHPE0uhPvKJyt5BA1ljpyywPJp1QN+97Tu+H8dw2V3XsVevuL8mo7YN+uhY6Si8dJP4F+zjk2V409X2IfSzeQRa6BpH7h3qg9WszhpxQ4A+ykjSCDhSYUCJfR3Y01OVbZmu7Zkp3v/3gLfEM2oXEDOTD+8DG8e8VjMH2lY0R3U2yAf+j3h85NyQHDtmzdWHWwc/fwvs9T/JfxFFsBcBQIG37MIuPAongpQCSwpzbxMnb1Z0EsGJ6B6MjVRgLLV5szntSXdkjDLhu1V+64myLNLYKfGASiFtSPk9pNJmE2DPErGVsOipVrgqT03aAWHTJrK+z92u5VR7xH44qiDOI/wLzphRPyhHJnYVsferEjSCMrEIjNkbyDhg6MchCtdSRsIluDQi4qBSQdfbskvbqINeJqs2lfmIGpS2qC3jTc4PScE8yNFx2CX/DHf7mZq34gTW3N8bk+Rjzz5nNhugkkDPIW6JUixg4qbR/u/1jbXuNhmSUBTg83yM9ZmBafMm7tg1FEy1/t8Y7ziCcOai0L3eK1tZyf6N0tsKyZcazM8CDoaoic0MlVxbuE/ikQl5Ccib4="
+    - DOCKER_CERT_PATH="./docker-creds"
+    - DOCKER_TLS_VERIFY="True"
+    script: docker-compose up -d
+    if: branch = master
