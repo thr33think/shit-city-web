@@ -10,8 +10,7 @@ services:
 - docker
 before_install:
 - openssl aes-256-cbc -K $encrypted_c06c602c11d3_key -iv $encrypted_c06c602c11d3_iv -in docker-creds.tar.enc -out docker-creds.tar -d
-- tar xvf docker-creds.tar
-- docker login -u $DOCKER_USER -p $DOCKER_PASS
+
 stages:
 - name: build
 - name: deploy
@@ -19,14 +18,17 @@ jobs:
   include:
   - stage: build
     script:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASS
     - docker build --pull --rm -t threethink/shit-city-web:${TRAVIS_COMMIT} .
     - docker push threethink/shit-city-web:${TRAVIS_COMMIT}
     if: branch = master
   - stage: deploy
     env:
       # DOCKER_HOST
-    - secure: "N9VyFIW36LyYRKU15Kepf9YDfxUwaYG59SK1WU13PfTrLLSkWqoy+BQG6ydFFblU6+PZKPJzBFnS8QwOVDePcQ8Pdsw+j2KlSi1yqJ1FHPE0uhPvKJyt5BA1ljpyywPJp1QN+97Tu+H8dw2V3XsVevuL8mo7YN+uhY6Si8dJP4F+zjk2V409X2IfSzeQRa6BpH7h3qg9WszhpxQ4A+ykjSCDhSYUCJfR3Y01OVbZmu7Zkp3v/3gLfEM2oXEDOTD+8DG8e8VjMH2lY0R3U2yAf+j3h85NyQHDtmzdWHWwc/fwvs9T/JfxFFsBcBQIG37MIuPAongpQCSwpzbxMnb1Z0EsGJ6B6MjVRgLLV5szntSXdkjDLhu1V+64myLNLYKfGASiFtSPk9pNJmE2DPErGVsOipVrgqT03aAWHTJrK+z92u5VR7xH44qiDOI/wLzphRPyhHJnYVsferEjSCMrEIjNkbyDhg6MchCtdSRsIluDQi4qBSQdfbskvbqINeJqs2lfmIGpS2qC3jTc4PScE8yNFx2CX/DHf7mZq34gTW3N8bk+Rjzz5nNhugkkDPIW6JUixg4qbR/u/1jbXuNhmSUBTg83yM9ZmBafMm7tg1FEy1/t8Y7ziCcOai0L3eK1tZyf6N0tsKyZcazM8CDoaoic0MlVxbuE/ikQl5Ccib4="
+    - secure: "RchJLfgiiWfo9wArHZ6O1X3swau3mtcFWDyQitkHzzPAUieP8QR46lLgZoRxLMpnkwfP9dk1LG5Jjy7pFA/GcAsi2+wNPfmLUJpeAUHU3EGVQLTaJWVmf/G4UqoERiKJG0URo+am8+Jioe2Rxgcwh5lXmotLpXW+swZwMTX0SxjJlE5bo7yIIJCa+6FL7l5KMyYlY/RAhaQtGCfrv2JExmAh087l/Mr8T1WuA8H9c4ss95/+lNB6y81ZSf6YeLBKANG2amxgF48WUYS8P6+MhNZ81x/jrX5wz7NTnp2YE81GsQZ28FmMOaDk0e+7Q5BXUguTtLXuAJaMkGLMGfjtbtYMpo6XnPDIy6b4pRcz0Y2iTx6sCJIKfk7oOBRumC2V8HDErvAOJ6uhNI4C1j2LqpCwRA4vupjQlyRYDM7HytikNxLWSRnCMgNLa1Py/XmcSEDmMtJcAMSRg2v6lXWBNdfXBc2ltKMJxlDYCXTW5daqgy6SRkhrqAsYBiUk7iRAfi+K94ma/64VAGCzwPveQ8vPYmyg7fV+zNHgRkPKkQy4B9OozdcN1FtNuMn8M55yRDXWlrcK0CXZlq3vkCRFpH9c5fb1baaEH5QglLP4VvLBQ826ahB5cPLxnPDSFNu45ldrf+eFiueOvcjm/sOPkzAPslw4e1U6GXRJ5sHG3EE="
     - DOCKER_CERT_PATH="./docker-creds"
     - DOCKER_TLS_VERIFY="True"
-    script: docker-compose up -d
+    script:
+      - tar xvf docker-creds.tar
+      - docker-compose up -d
     if: branch = master
