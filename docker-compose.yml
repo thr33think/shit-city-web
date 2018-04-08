@@ -1,0 +1,19 @@
+version: '2.3'
+services:
+  shit-city-web:
+    image: threethink/shit-city-web:${TRAVIS_COMMIT}
+    scale: 1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=shit-city-web"
+      - "traefik.port=80"
+      - "traefik.frontend.rule=Host:turds.dog"
+    cpu_count: 1
+    mem_reservation: 100m
+    mem_limit: 1500000000
+    restart: on-failure   
+    networks:
+      - production
+networks:
+  production:
+    external: true
