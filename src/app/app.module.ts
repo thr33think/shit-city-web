@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { MaterializeModule } from 'materialize-css';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { WebcamModule } from 'ngx-webcam';
 
 import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
@@ -26,7 +27,8 @@ import { GoogleMapsAPIWrapper } from '@agm/core';
     AgmCoreModule.forRoot({
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
       apiKey: 'AIzaSyDenChhf07VG7-VrijqSDS15H_Y4ngfvH0'
-    })
+    }),
+    WebcamModule
   ],
   providers: [TurdApiService, GeolocationService, GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
