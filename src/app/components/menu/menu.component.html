@@ -16,15 +16,13 @@
   </div>
 </div>
 
-<div class="back-button" *ngIf="visible && infoModal" [@slideInOut]>
-  <a (click)="toggleInfo()" class="btn-floating waves-effect waves-light red">
-    <i class="material-icons">close</i>
-  </a>
-</div>
-
-
 <div class="modal-backgroud" *ngIf="visible" [@opacityFade]></div>
 <div id="infoModal" class="modal" *ngIf="visible && infoModal" [@slideInOut]>
+  <div class="back-button">
+    <a (click)="toggleInfo()" class="btn-floating waves-effect waves-light red">
+      <i class="material-icons">close</i>
+    </a>
+  </div>
   <div class="modal-content">
     <h4>Turds.dog - A Threethink arts project</h4>
     <p>We live in Stuttgart where it's very common that dog owners don't care about their dog doing its business on the pavement. Because of that we started turds.dog - the first app that helps you detect dog turds on your daily walks.</p>
