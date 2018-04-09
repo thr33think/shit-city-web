@@ -1,18 +1,28 @@
-<div class="position-button">
-  <a (click)="centerPosition()" class="btn-floating btn-large waves-effect waves-light red">
-    <i class="material-icons">gps_fixed</i>
+<div class="menu-buttons" *ngIf="!visible">
+  <div class="position-button">
+    <a (click)="centerPosition()" class="btn-floating btn-large waves-effect waves-light red">
+      <i class="material-icons">gps_fixed</i>
+    </a>
+  </div>
+  <div class="add-button">
+    <a (click)="toggleTurdModal()" class="btn-floating btn-large waves-effect waves-light red">
+      <i class="material-icons">add</i>
+    </a>
+  </div>
+  <div class="info-button">
+    <a (click)="toggleInfo()" class="btn-floating btn-large waves-effect waves-light red">
+      <i class="material-icons">info</i>
+    </a>
+  </div>
+</div>
+
+<div class="back-button" *ngIf="visible && infoModal" [@slideInOut]>
+  <a (click)="toggleInfo()" class="btn-floating waves-effect waves-light red">
+    <i class="material-icons">close</i>
   </a>
 </div>
-<div class="add-button">
-  <a (click)="toggleTurdModal()" class="btn-floating btn-large waves-effect waves-light red">
-    <i class="material-icons">add</i>
-  </a>
-</div>
-<div class="info-button">
-  <a (click)="toggleInfo()" class="btn-floating btn-large waves-effect waves-light red">
-    <i class="material-icons">info</i>
-  </a>
-</div>
+
+
 <div class="modal-backgroud" *ngIf="visible" [@opacityFade]></div>
 <div id="infoModal" class="modal" *ngIf="visible && infoModal" [@slideInOut]>
   <div class="modal-content">
@@ -29,17 +39,20 @@
   </div>
 </div>
 
-<div id="addTurdModal" class="modal" *ngIf="visible && turdModal" [@slideInOut]>
+<div id="addTurdModal" class="modal camera" *ngIf="visible && turdModal" [@slideInOut]>
   <div class="modal-content" *ngIf="webcamState">
-    <h4>Add Turd</h4>
-    <webcam [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
-    <button class="modal-action modal-close waves-effect waves-green btn" (click)="triggerSnapshot();">Take A Snapshot</button>
+    <webcam class="webcam" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+    <br />
+    <button class="modal-action modal-close waves-effect waves-green btn" (click)="triggerSnapshot();">Take A Turdshot!</button>
+    <button class="modal-action modal-close waves-effect waves-green btn" (click)="toggleTurdModal();">Return to map</button>
   </div>
   <div class="modal-content">
     <div class="snapshot" *ngIf="webcamImage">
       <h4>Nice one!</h4>
       <img [src]="webcamImage.imageAsDataUrl" />
+      <br />
       <button class="modal-action modal-close waves-effect waves-green btn" (click)="uploadTurd();">Upload the Turd!</button>
+      <button class="modal-action modal-close waves-effect waves-green btn" (click)="restartCapture();">Take new Pic</button>
       <div *ngIf="response">
         {{response.result}}
       </div>

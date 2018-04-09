@@ -19,6 +19,13 @@
     z-index: 99;
 }
 
+.back-button {
+    position: absolute;
+    bottom: 400px;
+    right: 20px;
+    z-index: 99;
+}
+
 .no-margin-left {
     margin-left: -12px !important;
 }
@@ -27,6 +34,36 @@
     display: inline;
     bottom: 0;
     z-index: 2;
+}
+
+.modal-header {
+    margin-bottom: 15px;
+}
+
+.camera {
+    top: 0;
+    bottom: 0;
+    max-height: 100vh;
+    margin: 0;
+    width: 100%;
+}
+
+.webcam ::ng-deep .webcam-wrapper>video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.webcam ::ng-deep .webcam-wrapper>canvas {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.snapshot>img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
 }
 
 .modal-backgroud {
