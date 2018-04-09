@@ -85,6 +85,11 @@ export class MenuComponent implements OnInit {
     this.turdModal = !this.turdModal;
   }
 
+  restartCapture() {
+    this.webcamState = !this.webcamState;
+    this.webcamImage = null;
+  }
+
   async uploadTurd() {
     const uploadData = {
       image_base64: `data:image/jpeg;base64,${this.webcamImage.imageAsBase64}`,
@@ -93,7 +98,7 @@ export class MenuComponent implements OnInit {
       timestamp: (new Date).getTime().toString(),
       visible: true
     };
-    const upload = await this.turdApi.uploadTurd(uploadData);
+    const upload = await this.turdApi.postTurd(uploadData);
     this.response = upload;
   }
 }
