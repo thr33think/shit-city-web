@@ -1,8 +1,11 @@
-export interface Marker {
+export interface Markers {
     lat: number;
     long: number;
     id: string;
-    image_base64: string;
     timestamp: string;
     visible: boolean;
+}
+
+export interface Marker extends Markers {
+    image_base64: string;
 }
