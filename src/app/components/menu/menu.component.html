@@ -38,21 +38,42 @@
 </div>
 
 <div id="addTurdModal" class="modal camera" *ngIf="visible && turdModal" [@slideInOut]>
-  <div class="modal-content" *ngIf="webcamState">
+  <div class="modal-content cam-modal" *ngIf="webcamState">
     <webcam class="webcam" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
-    <br />
-    <button class="modal-action modal-close waves-effect waves-green btn" (click)="triggerSnapshot();">Take A Turdshot!</button>
-    <button class="modal-action modal-close waves-effect waves-green btn" (click)="toggleTurdModal();">Return to map</button>
+    <div class="action-buttons">
+      <div class="action-button-left">
+        <button class="modal-action modal-close waves-effect waves-green btn" (click)="toggleTurdModal();">Back to map</button>
+      </div>
+      <div class="action-button-right">
+        <button class="modal-action modal-close waves-effect waves-green btn" (click)="triggerSnapshot();">Take Pic</button>
+      </div>
+    </div>
   </div>
-  <div class="modal-content">
+  <div class="modal-content cam-modal">
+    <div *ngIf="response">
+      <div *ngIf="response.error">
+        Oh no, an error occured:
+         {{response.result}}
+        <br>
+      </div>
+      <div *ngIf="response.error">
+        Yeah, your turd has been uploaded!
+        <br>
+      </div>
+      <button class="modal-action modal-close waves-effect waves-green btn" (click)="returnToMap();">Return to Map</button>
+    </div>
     <div class="snapshot" *ngIf="webcamImage">
-      <h4>Nice one!</h4>
+      <div class="heading">
+        <h4>Nice one!</h4>
+      </div>
       <img [src]="webcamImage.imageAsDataUrl" />
-      <br />
-      <button class="modal-action modal-close waves-effect waves-green btn" (click)="uploadTurd();">Upload the Turd!</button>
-      <button class="modal-action modal-close waves-effect waves-green btn" (click)="restartCapture();">Take new Pic</button>
-      <div *ngIf="response">
-        {{response.result}}
+      <div class="action-buttons" *ngIf="!response">
+        <div class="action-button-left">
+          <button class="modal-action modal-close waves-effect waves-green btn" (click)="restartCapture();">Take new Pic</button>
+        </div>
+        <div class="action-button-right">
+          <button class="modal-action modal-close waves-effect waves-green btn" (click)="uploadTurd();">Upload the Turd!</button>
+        </div>
       </div>
     </div>
   </div>
