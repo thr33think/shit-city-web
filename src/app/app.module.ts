@@ -8,11 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { WebcamModule } from 'ngx-webcam';
 
 import { AppComponent } from './app.component';
-import { AgmCoreModule } from '@agm/core';
 import { MenuComponent } from './components/menu/menu.component';
 import { MapComponent } from './components/map/map.component';
 
 import { GoogleMapsAPIWrapper } from '@agm/core';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { GoogleMapsAPIWrapper } from '@agm/core';
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
       apiKey: 'AIzaSyDenChhf07VG7-VrijqSDS15H_Y4ngfvH0'
     }),
+    AgmJsMarkerClustererModule,
     WebcamModule
   ],
   providers: [TurdApiService, GeolocationService, GoogleMapsAPIWrapper],
