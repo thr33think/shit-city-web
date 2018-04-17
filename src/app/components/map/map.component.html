@@ -1,12 +1,14 @@
 <agm-map #gm [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" [scaleControl]="true" (triggerResize)="true" (zoomChange)="zoomChange($event)" [usePanning]="true">
   <!-- (mapClick)="mapClicked($event)" -->
+  <agm-marker [latitude]="lat" [longitude]="lng" [zIndex]="10" [iconUrl]="'http://icons.iconarchive.com/icons/custom-icon-design/flatastic-6/16/Circle-icon.png'">
+  </agm-marker>
   <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
-    <agm-marker *ngFor="let m of markers; let i = index" [iconUrl]="'/assets/images/poo.png'" (markerClick)="gm.lastOpen?.close(); gm.lastOpen = infoWindow; markerClicked(m);"
+    <agm-marker *ngFor="let m of markers; let i = index" [zIndex]="8" [iconUrl]="'/assets/images/poo.png'" (markerClick)="gm.lastOpen?.close(); gm.lastOpen = infoWindow; markerClicked(m);"
       [latitude]="m.lat" [longitude]="m.long">
       <agm-info-window #infoWindow>
         <p>
           <strong>Turd with id: {{activeTurd.id}}</strong>
-          <br /> created on: {{activeTurd.timestamp}}
+          <br /> created on: {{getFormattedTimestamp(activeTurd.timestamp)}}
         </p>
         <div class="turd-image-wrapper">
           <img class="turd-image" src="{{activeTurd.image_base64}}" />
@@ -14,6 +16,6 @@
       </agm-info-window>
     </agm-marker>
   </agm-marker-cluster>
-  <agm-circle [latitude]="lat" [longitude]="lng" [radius]="(625 / (zoom * 10)) * 200" [fillColor]="'blue'" [circleDraggable]="false" [editable]="false">
-  </agm-circle>
+  <!-- <agm-circle [latitude]="lat" [longitude]="lng" [radius]="(625 / (zoom * 10)) * 200" [fillColor]="'blue'" [circleDraggable]="false" [editable]="false">
+  </agm-circle> -->
 </agm-map>

@@ -3,7 +3,8 @@ import { GeolocationService } from './../../services/geolocation.service';
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { MouseEvent, AgmMap } from '@agm/core';
 import { TurdApiService } from '../../services/turd-api.service';
-import { Marker } from '../../interfaces/marker';
+import { Marker, Markers } from '../../interfaces/marker';
+import * as moment from 'moment/moment';
 
 @Component({
   selector: 'app-map',
@@ -31,7 +32,7 @@ export class MapComponent implements OnInit {
   lat = 48.7618486;
   lng = 9.17261890;
 
-  markers: Marker[];
+  markers: Markers[];
 
   constructor(private turdApi: TurdApiService, private geolocationService: GeolocationService) { }
 
@@ -59,7 +60,7 @@ export class MapComponent implements OnInit {
       .subscribe((res) => {
         this.lat = res.coords.latitude;
         this.lng = res.coords.longitude;
-        this.zoom = 12;
+        this.zoom = 16;
       });
   }
 
@@ -73,6 +74,10 @@ export class MapComponent implements OnInit {
 
   centerMap() {
     this.myMap._mapsWrapper.panTo({ lat: this.lat, lng: this.lng });
+  }
+
+  getFormattedTimestamp(timeInMilliSeconds) {
+    return moment(parseInt(timeInMilliSeconds, 10)).format('DD.MM.YYYY HH:mm');
   }
 
   // mapClicked($event: MouseEvent) {
