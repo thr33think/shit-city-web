@@ -19,4 +19,8 @@ export class AppComponent implements OnInit {
     this.map.centerMap();
   }
 
+  reRenderTurds() {
+    this.map.getTurds();
+  }
+
 }

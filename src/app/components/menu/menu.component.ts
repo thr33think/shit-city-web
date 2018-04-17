@@ -41,6 +41,7 @@ export class MenuComponent implements OnInit {
   response: any;
 
   @Output() centerMap = new EventEmitter();
+  @Output() reRenderTurds = new EventEmitter();
 
   visible = false;
   webcamImage: WebcamImage = null;
@@ -88,6 +89,14 @@ export class MenuComponent implements OnInit {
   restartCapture() {
     this.webcamState = !this.webcamState;
     this.webcamImage = null;
+  }
+
+  returnToMap() {
+    this.visible = !this.visible;
+    this.turdModal = !this.turdModal;
+    this.webcamImage = null;
+    this.response = null;
+    this.reRenderTurds.next();
   }
 
   async uploadTurd() {
