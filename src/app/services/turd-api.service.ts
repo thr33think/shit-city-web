@@ -23,9 +23,15 @@ export class TurdApiService {
   }
 
   async postTurd(bodyData: Marker): Promise<any> {
-    const upload = await this.http.post(`${environment.apiUrl}/turds`, bodyData, {
+    let upload;
+    try {
+      upload = await this.http.post(`${environment.apiUrl}/turds`, bodyData, {
       headers: new HttpHeaders().set('Authorization', 'Basic YXBwOmpCSDNKSnZnN0d1VTFIQ00zZkxuSnQxQXE=')
     }).toPromise();
+    } catch (error) {
+      console.log(error.message);
+      upload = {error: true, result: error.message};
+    }
     return upload;
   }
 
