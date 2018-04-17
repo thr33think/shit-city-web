@@ -50,6 +50,10 @@ export class MapComponent implements OnInit {
     this.markers = await this.turdApi.getTurds();
   }
 
+  async getTurd(id) {
+    return await this.turdApi.getTurd(id);
+  }
+
   getCurrentLocation() {
     this.geolocationService.getPosition()
       .subscribe((res) => {
@@ -63,8 +67,8 @@ export class MapComponent implements OnInit {
     this.zoom = zoom;
   }
 
-  markerClicked(marker) {
-    this.activeTurd = marker;
+  async markerClicked(marker) {
+    this.activeTurd = await this.getTurd(marker.id);
   }
 
   centerMap() {

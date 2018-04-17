@@ -42,6 +42,13 @@ export class TurdApiService {
     return markers;
   }
 
+  async getTurd(id): Promise<any>  {
+    const marker = await this.http.get(`${environment.apiUrl}/turds/${id}`, {
+      headers: new HttpHeaders().set('Authorization', 'Basic YXBwOmpCSDNKSnZnN0d1VTFIQ00zZkxuSnQxQXE=')
+    }).toPromise();
+    return marker;
+  }
+
   async postTurd(bodyData): Promise<any> {
     const upload = await this.http.post(`${environment.apiUrl}/turds`, bodyData, {
       headers: new HttpHeaders().set('Authorization', 'Basic YXBwOmpCSDNKSnZnN0d1VTFIQ00zZkxuSnQxQXE=')
