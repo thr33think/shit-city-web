@@ -92,6 +92,7 @@ export class MenuComponent implements OnInit {
 
   async uploadTurd() {
     const uploadData = {
+      id: '',
       image_base64: `data:image/jpeg;base64,${this.webcamImage.imageAsBase64}`,
       lat: this.lat,
       long: this.lng,
