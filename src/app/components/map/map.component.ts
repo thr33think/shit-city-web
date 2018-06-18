@@ -20,7 +20,7 @@ export class MapComponent implements OnInit {
     lat: 0,
     long: 0,
     id: '0',
-    image_base64: '',
+    image_url: '',
     visible: false,
     timestamp: '0',
   };

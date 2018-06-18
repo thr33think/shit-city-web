@@ -102,7 +102,8 @@ export class MenuComponent implements OnInit {
   async uploadTurd() {
     const uploadData = {
       id: '',
-      image_base64: `data:image/jpeg;base64,${this.webcamImage.imageAsBase64}`,
+      image_base64: `${this.webcamImage.imageAsBase64}`,
+      image_url: '',
       lat: this.lat,
       long: this.lng,
       timestamp: (new Date).getTime().toString(),
