@@ -39,7 +39,7 @@
 
 <div id="addTurdModal" class="modal camera" *ngIf="visible && turdModal" [@slideInOut]>
   <div class="modal-content cam-modal" *ngIf="webcamState">
-    <webcam class="webcam" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"></webcam>
+    <webcam class="webcam" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" [height]="200" [width]="200"></webcam>
     <div class="action-buttons">
       <div class="action-button-left">
         <button class="modal-action modal-close waves-effect waves-green btn" (click)="toggleTurdModal();">Back to map</button>
