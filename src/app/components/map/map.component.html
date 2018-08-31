@@ -4,7 +4,7 @@
   </agm-marker>
   <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
     <ng-container *ngFor="let m of markers">
-      <agm-marker *ngIf="m.visible" [zIndex]="8" [iconUrl]="'/assets/images/poo.png'" (markerClick)="gm.lastOpen?.close(); gm.lastOpen = infoWindow; markerClicked(m);"
+      <agm-marker *ngIf="m.visible" [zIndex]="8" [iconUrl]="markerIcon" (markerClick)="gm.lastOpen?.close(); gm.lastOpen = infoWindow; markerClicked(m);"
         [latitude]="m.lat" [longitude]="m.long">
         <agm-info-window #infoWindow>
           <p>

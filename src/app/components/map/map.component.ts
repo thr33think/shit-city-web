@@ -16,6 +16,14 @@ export class MapComponent implements OnInit {
 
   @ViewChild(AgmMap) myMap: any;
 
+  markerIcon = {
+    url: require('../../../assets/images/new_pin.svg'),
+    scaledSize: {
+      width: 679 / 12,
+      height: 865 / 12
+    }
+  };
+
   activeTurd: Marker = {
     lat: 0,
     long: 0,
