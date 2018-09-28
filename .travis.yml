@@ -9,7 +9,7 @@ env:
 services:
 - docker
 before_install:
-- openssl aes-256-cbc -K $encrypted_c06c602c11d3_key -iv $encrypted_c06c602c11d3_iv -in docker-creds.tar.enc -out docker-creds.tar -d
+- openssl aes-256-cbc -K $encrypted_c06c602c11d3_key -iv $encrypted_c06c602c11d3_iv -in docker-remote-secrets.tar.enc -out docker-remote-secrets.tar -d
 
 stages:
 - name: build
@@ -25,10 +25,10 @@ jobs:
   - stage: deploy
     env:
       # DOCKER_HOST
-    - secure: "wSwxOpMsYbLkhGoZaPYN85G0NXrNRR6ob4fTrmw1BOQzoL/pNPCxw+m4qw5s8nUCRBEamObNunKht9HZrF7Ia0Dop+FRahAaD1VW7rHijExNqewG047nbKYTfBYf5JJ/ylXMrkDKNEIFEihmVh4CczCBmrWT50h7UfM2rO3DGzJNnqvfo3Lry1a7SOuElmOqlymRxuIvfXieDacoXW9GdBhPC5xwlNR0cDI7COmoVPHnhHD/KxuzWumfM4CmXIhwfOVlEaDfb+U6atv6oJehuJpbqJ/33GMt6z16FgHncAZE7SDzHQA/QgoNJriSE9uOT3SO7B+LhacuZKMXDvil7KT033QoogMwyYGDwIk/m2dUbJg0VpqzP++YsM8QaMbMak1xfnJN5aQ6liQGphhJtW7GQ3/1aAzxEB0zZVufnKnr3gjAR2tECzbEcj0veLR803GFccZBaC2JK7EV7F9zF60lyQ5ujOqvSqEMHbctLnaibwjJqCMZ3bZ15mG5tqml4vJ4VyFgDkUh8hVwIv4PT3pOxxY/bRFEiKtJKHoj6x0WCbJ1QwCguzcdKwCKO2bx6+DSoMxg2eRAKSvr3+XJQKz5O2dHrjTMOKmXoTf+VlydWSi9TFgB2u+xw/ybmBFyJ0Tl2sTfQWMlyKpZgbKISx0b/QQ9t2fJHP3BkuDsdto="
-    - DOCKER_CERT_PATH="./docker-creds"
+    - secure: "IuGhl0IpdZ7qroYFBDpSQuc0C8o4icyIq5lrm4Hwds0BIpdfbr/LdDrHdoA1NPToGB5H/9rlWj1wUrKPj6DiMqJFsNLzHdIYUkxLj95g0J+iWOv6DMS2LPoaVkFCbttVB7nY9O0Vsnv4C5Or2QHunrO1j7f+4yJnCRCdCZ6S6ACvCUCwOPoITYhliuAcYBFZRfDxWqFWpdkYmbs94SeChtKCm/Z1KFHWQ9MAj59ed96ydm6gopAuHES8oPEeLcdEUek6hrflDG04sMFlPiwwFT/mnSZTnoniJFb21o1rYo1U3IYMArZtCd3ocIz3zhue0/M7QMYtN6pSeWdjKe5GkSX3r/zfc0JlpnWTMpPU75+Nh5mJdlsjA0Cd7oRHtOV1iMr3BqPwdwSbFK9RcZ03dUMVjuKOBzMGMArxvCP/kohSBzzJWxAwcWftXReQbxikTHDnGnFbqA43WVjPwueNg702I06iKfEzWKkTtbodwUxmx2LjZzBONv83Nn/CnZatrZHFyuIvWCRQNh1Xt+XdpwZa/kwjIx7FBoMGPsLKgvMdX/OhbgjODjTghzjBhM1HuO3GU8qGEOWR7pVG7nNuyQ1Wr7qaYeV5Q1I09PVMz2acHLedGRiYBrMM53qaGrbAlSGAYF4umpnbWlxHsbll5rxTTm0xCDW1Ty9MesmsRng="
+    - DOCKER_CERT_PATH="./docker-remote-secrets"
     - DOCKER_TLS_VERIFY="True"
     script:
-      - tar xvf docker-creds.tar
+      - tar xvf docker-remote-secrets.tar
       - docker-compose up -d
     if: branch = master
