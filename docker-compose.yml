@@ -8,6 +8,7 @@ services:
       - "traefik.backend=shit-city-web"
       - "traefik.port=80"
       - "traefik.frontend.rule=Host:turds.dog"
+      - "traefik.docker.network=loadbalancer"
     cpu_count: 1
     mem_reservation: 100m
     mem_limit: 1500000000
