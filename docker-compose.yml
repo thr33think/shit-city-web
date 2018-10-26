@@ -12,7 +12,7 @@ services:
     cpu_count: 1
     mem_reservation: 100m
     mem_limit: 1500000000
-    restart: on-failure   
+    restart: always 
     networks:
       - dogturds
       - loadbalancer
