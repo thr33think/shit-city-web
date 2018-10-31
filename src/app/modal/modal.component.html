@@ -11,7 +11,9 @@
       <br /> created on: {{getFormattedTimestamp(activeTurd.timestamp)}}
     </p>
     <div class="turd-image-wrapper">
-      <img class="turd-image" src="{{activeTurd.image_url}}" />
+      <pinch-zoom class="turd-image" [ngStyle]="{'max-height.px': getImageMaxHeight()}">
+        <img src="{{activeTurd.image_url}}"/>
+      </pinch-zoom>
     </div>
   </div>
 </div>

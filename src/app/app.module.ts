@@ -15,6 +15,7 @@ import { GoogleMapsAPIWrapper } from '@agm/core';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { AgmCoreModule } from '@agm/core';
 import { ModalComponent } from './modal/modal.component';
+import { PinchZoomModule } from 'ngx-pinch-zoom';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ModalComponent } from './modal/modal.component';
       apiKey: 'AIzaSyDenChhf07VG7-VrijqSDS15H_Y4ngfvH0'
     }),
     AgmJsMarkerClustererModule,
-    WebcamModule
+    WebcamModule,
+    PinchZoomModule
   ],
   providers: [TurdApiService, GeolocationService, GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]

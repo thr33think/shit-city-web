@@ -1,6 +1,6 @@
 import { Animations } from './../components/shared/animations';
 import { Marker } from './../interfaces/marker';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import * as moment from 'moment';
 @Component({
   selector: 'app-modal',
@@ -74,5 +74,14 @@ export class ModalComponent implements OnInit {
 
   private getRandomPhrase() {
     this.currentPhrase = this.cringyPhrases[Math.floor(Math.random() * this.cringyPhrases.length)];
+  }
+
+  // @HostListener('window:resize')
+  // onWindowResize() {
+  //   console.log(window.innerHeight)
+  // }
+
+  getImageMaxHeight(): number {
+    return window.innerHeight - 300;
   }
 }
