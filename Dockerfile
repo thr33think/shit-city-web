@@ -5,7 +5,7 @@ COPY package.json /app/
 RUN npm install
 COPY ./ /app/
 ARG env=prod
-RUN npm run build
+RUN npm run build -- --prod --environment $env
 
 # Stage 1: move dist to nginx
 FROM nginx:1.13
