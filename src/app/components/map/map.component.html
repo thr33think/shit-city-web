@@ -1,6 +1,6 @@
 <agm-map #gm [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" [scaleControl]="true" (triggerResize)="true" (zoomChange)="zoomChange($event)" [usePanning]="true">
   <!-- (mapClick)="mapClicked($event)" -->
-  <agm-marker [latitude]="lat" [longitude]="lng" [zIndex]="10" [iconUrl]="'http://icons.iconarchive.com/icons/custom-icon-design/flatastic-6/16/Circle-icon.png'">
+  <agm-marker [latitude]="lat" [longitude]="lng" [zIndex]="10" [iconUrl]="'https://icons.iconarchive.com/icons/custom-icon-design/flatastic-6/16/Circle-icon.png'">
   </agm-marker>
   <agm-marker-cluster imagePath="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m">
     <ng-container *ngFor="let m of markers">
