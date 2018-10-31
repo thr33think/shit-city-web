@@ -14,12 +14,14 @@ import { MapComponent } from './components/map/map.component';
 import { GoogleMapsAPIWrapper } from '@agm/core';
 import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 import { AgmCoreModule } from '@agm/core';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    MapComponent
+    MapComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

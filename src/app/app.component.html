@@ -1,8 +1,11 @@
 <div id="wrapper">
   <div #map class="google_map">
-    <app-map></app-map>
+    <app-map (showTurdDetail)="showTurdDetail($event)"></app-map>
   </div>
   <div>
     <app-menu (centerMap)="centerMap()" (reRenderTurds)="reRenderTurds()"></app-menu>
+  </div>
+  <div>
+    <app-modal></app-modal>
   </div>
 </div>

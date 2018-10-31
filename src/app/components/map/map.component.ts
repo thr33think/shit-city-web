@@ -1,10 +1,8 @@
-import { Observable } from 'rxjs/Observable';
 import { GeolocationService } from './../../services/geolocation.service';
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import { MouseEvent, AgmMap } from '@agm/core';
+import { Component, OnInit, ViewChild, HostListener, Output, EventEmitter } from '@angular/core';
+import { AgmMap } from '@agm/core';
 import { TurdApiService } from '../../services/turd-api.service';
 import { Marker, Markers } from '../../interfaces/marker';
-import * as moment from 'moment/moment';
 
 @Component({
   selector: 'app-map',
@@ -15,22 +13,23 @@ import * as moment from 'moment/moment';
 export class MapComponent implements OnInit {
 
   @ViewChild(AgmMap) myMap: any;
+  @Output() showTurdDetail = new EventEmitter<Marker>();
 
   markerIcon = {
-    url: require('../../../assets/images/new_pin.svg'),
+    url: require('../../../assets/images/turd-pin.svg'),
     scaledSize: {
-      width: 679 / 12,
-      height: 865 / 12
-    }
+      width: 600 / 8,
+      height: 800 / 8
+    },
+    zIndex: 998
   };
 
-  activeTurd: Marker = {
-    lat: 0,
-    long: 0,
-    id: '0',
-    image_url: '',
-    visible: false,
-    timestamp: '0',
+  locationMarkerIcon = {
+    url: require('../../../assets/images/location-marker.svg'),
+    scaledSize: {
+      width: 679 / 22,
+      height: 865 / 22
+    }
   };
 
   // google maps zoom level
@@ -77,23 +76,11 @@ export class MapComponent implements OnInit {
   }
 
   async markerClicked(marker) {
-    this.activeTurd = await this.getTurd(marker.id);
+    const activeTurd = await this.getTurd(marker.id);
+    this.showTurdDetail.emit(activeTurd);
   }
 
   centerMap() {
     this.myMap._mapsWrapper.panTo({ lat: this.lat, lng: this.lng });
   }
-
-  getFormattedTimestamp(timeInMilliSeconds) {
-    return moment(parseInt(timeInMilliSeconds, 10)).format('DD.MM.YYYY HH:mm');
-  }
-
-  // mapClicked($event: MouseEvent) {
-  //   send put request to api
-  // }
-
-  // markerDragEnd(m: Marker, $event: MouseEvent) {
-  //   console.log('dragEnd', m, $event);
-  // }
-
 }

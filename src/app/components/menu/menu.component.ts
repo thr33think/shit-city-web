@@ -1,7 +1,7 @@
+import { Animations } from './../shared/animations';
 import { TurdApiService } from './../../services/turd-api.service';
 import { GeolocationService } from './../../services/geolocation.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { trigger, transition, animate, style } from '@angular/animations';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { WebcamImage } from 'ngx-webcam';
@@ -10,26 +10,7 @@ import { WebcamImage } from 'ngx-webcam';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  animations: [
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({ transform: 'translateY(+100%)' }),
-        animate('200ms ease-in', style({ transform: 'translateY(0%)' }))
-      ]),
-      transition(':leave', [
-        animate('200ms ease-in', style({ transform: 'translateY(+100%)' }))
-      ])
-    ]),
-    trigger('opacityFade', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('200ms ease-in', style({ opacity: 1 }))
-      ]),
-      transition(':leave', [
-        animate('200ms ease-in', style({ opacity: 0 }))
-      ])
-    ])
-  ]
+  animations: [Animations.opacity, Animations.slideInOut]
 })
 export class MenuComponent implements OnInit {
 

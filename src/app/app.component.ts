@@ -1,7 +1,9 @@
+import { ModalComponent } from './modal/modal.component';
 import { versions } from './../environments/versions';
 import { MapComponent } from './components/map/map.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import * as data from '../../package.json';
+import { Marker } from './interfaces/marker';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +20,7 @@ export class AppComponent implements OnInit {
 
 
   @ViewChild(MapComponent) map;
+  @ViewChild(ModalComponent) modal;
 
   constructor() {}
 
@@ -44,6 +47,10 @@ export class AppComponent implements OnInit {
 
   reRenderTurds() {
     this.map.getTurds();
+  }
+
+  showTurdDetail(turd: Marker) {
+    this.modal.toggleTurdDetailModal(turd);
   }
 
 }
