@@ -1,82 +1,82 @@
 .position-button {
-    position: absolute;
-    bottom: 15px;
-    right: 2px;
-    z-index: 99;
+  bottom: 15px;
+  position: absolute;
+  right: 2px;
+  z-index: 99;
 }
 
 .add-button {
-    position: absolute;
-    bottom: 135px;
-    right: 2px;
-    z-index: 99;
+  bottom: 135px;
+  position: absolute;
+  right: 2px;
+  z-index: 99;
 }
 
 .info-button {
-    position: absolute;
-    bottom: 75px;
-    right: 2px;
-    z-index: 99;
+  bottom: 75px;
+  position: absolute;
+  right: 2px;
+  z-index: 99;
 }
 
 .back-button {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    z-index: 99;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 99;
 }
 
 .no-margin-left {
-    margin-left: -12px !important;
+  margin-left: -12px !important;
 }
 
 .modal {
-    display: inline;
-    bottom: 0;
-    z-index: 2;
+  bottom: 0;
+  display: inline;
+  z-index: 2;
 }
 
 .modal-header {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .camera {
-    top: 0;
-    bottom: 0;
-    max-height: 100vh;
-    margin: 0;
-    width: 100%;
+  bottom: 0;
+  max-height: 100vh;
+  margin: 0;
+  top: 0;
+  width: 100%;
 }
 
 .webcam ::ng-deep .webcam-wrapper>video {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
+  width: 100%;
 }
 
 .webcam ::ng-deep .webcam-wrapper>canvas {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
+  width: 100%;
 }
 
 .snapshot>img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 .modal-backgroud {
-    position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .cam-modal {
