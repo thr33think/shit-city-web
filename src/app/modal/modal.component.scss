@@ -1,0 +1,36 @@
+.modal {
+  bottom: 0;
+  display: inline;
+  margin: 0;
+  max-height: 100vh;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.modal-header {
+  margin-bottom: 15px;
+}
+
+.back-button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 99;
+}
+
+.turd-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.turd-image-wrapper {
+  text-align: center;
+}
+
+h4 {
+  margin-top: 20px;
+  text-align: center;
+}

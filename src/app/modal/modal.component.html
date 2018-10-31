@@ -1,0 +1,17 @@
+<div id="infoModal" class="modal" *ngIf="showBackground && turdDetailModal" [@slideInOut]>
+  <div class="back-button">
+    <a (click)="toggleTurdDetailModal()" class="btn-floating waves-effect waves-light red">
+      <i class="material-icons">close</i>
+    </a>
+  </div>
+  <div class="modal-content">
+    <h4>{{currentPhrase}}</h4>
+    <p>
+      <strong>Turd with id: {{activeTurd.id}}</strong>
+      <br /> created on: {{getFormattedTimestamp(activeTurd.timestamp)}}
+    </p>
+    <div class="turd-image-wrapper">
+      <img class="turd-image" src="{{activeTurd.image_url}}" />
+    </div>
+  </div>
+</div>
