@@ -1,7 +1,10 @@
 version: "2.3"
 services:
   shit-city-web:
-    image: threethink/shit-city-web:${TRAVIS_COMMIT}
+    image: threethink/shit-city-web:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
     scale: 1
     labels:
       - "traefik.enable=true"
