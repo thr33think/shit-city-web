@@ -32,7 +32,7 @@
     "rx-dom": "^7.0.3",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
-    "ts-node": "^3.2.2",
+    "ts-node": "^8.0.0",
     "typescript": "^2.4.2",
     "zone.js": "^0.8.14"
   },
