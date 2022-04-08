@@ -26,7 +26,7 @@
     "jquery": "^3.3.1",
     "js-marker-clusterer": "^1.0.0",
     "materialize-css": "^0.100.2",
-    "moment": "^2.22.1",
+    "moment": "^2.29.2",
     "ngx-pinch-zoom": "^1.2.0",
     "ngx-webcam": "^0.1.6",
     "rx-dom": "^7.0.3",
